@@ -87,7 +87,7 @@ const getAllReservations = function (guest_id, limit = 10) {
   properties.number_of_bedrooms, 
   properties.number_of_bathrooms, 
   properties.parking_spaces,
-  reservations.id, 
+ reservations.id, 
   properties.title, 
   properties.cost_per_night, 
   reservations.start_date,
@@ -107,6 +107,7 @@ const getAllReservations = function (guest_id, limit = 10) {
     .catch((err) => {
       console.log(err.message);
     });
+
 
 }
 exports.getAllReservations = getAllReservations;
