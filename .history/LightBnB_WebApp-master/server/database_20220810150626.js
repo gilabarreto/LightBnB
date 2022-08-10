@@ -59,26 +59,18 @@ exports.getUserWithId = getUserWithId;
  */
 const addUser = function (user) {
 
-  // console.log(name, email, password)
-
   return pool
   .query(`INSERT INTO users (
     name, email, password) 
-    VALUES ($1, $2, $3)
-    RETURNING *`, [user.name, user.email, user.password])
+    VALUES ($1, $2, $3
+    RETURNING *)`, [user])
   .then((result) => {
-    // console.log(result.rows[0]);
+    console.log(result.rows[0]);
     return result.rows[0];
   })
   .catch((err) => {
     console.log(err.message);
   });
-
-/*   const userId = Object.keys(users).length + 1;
-  user.id = userId;
-  users[userId] = user;
-  return Promise.resolve(user); */
-
 
 }
 exports.addUser = addUser;
