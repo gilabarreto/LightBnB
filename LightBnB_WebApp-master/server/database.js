@@ -99,7 +99,6 @@ const getAllReservations = function (guest_id, limit = 10) {
   ORDER BY reservations.start_date
   LIMIT $2;`, [guest_id, limit])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {
@@ -213,7 +212,6 @@ const addProperty = function (property) {
       property.number_of_bedrooms
     ])
     .then((result) => {
-      console.log(result.rows[0]);
       return result.rows[0];
     })
     .catch((err) => {
