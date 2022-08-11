@@ -122,8 +122,9 @@ exports.getAllReservations = getAllReservations;
 
 const getAllProperties = (options, limit = 10) => {
 
+  // 1
   const queryParams = [];
-
+  // 2
   let queryString = `
    SELECT properties.*, avg(property_reviews.rating) as average_rating
    FROM properties
@@ -131,8 +132,9 @@ const getAllProperties = (options, limit = 10) => {
    WHERE 1=1
    `;
 
+  // 3
   if (options.city) {
-    queryParams.push(`%${options.city.substring(1, options.city.length - 1)}%`);
+    queryParams.push(`%${options.city.substring(1, str.length - 1)}%`);
     queryString += `AND city LIKE $${queryParams.length} `;
   }
 
@@ -161,14 +163,17 @@ const getAllProperties = (options, limit = 10) => {
     queryString += `HAVING avg(property_reviews.rating) >= $${queryParams.length} `;
   }
 
+  // 4
   queryParams.push(limit);
   queryString += `
    ORDER BY cost_per_night
    LIMIT $${queryParams.length};
    `;
 
-  // console.log(queryString, queryParams);
+  // 5
+  console.log(queryString, queryParams);
 
+  // 6
   return pool.query(queryString, queryParams).then((res) => res.rows);
 
 };
