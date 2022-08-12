@@ -32,4 +32,4 @@ Finally, I connected the database to a javascript application so that I could in
 
 ## Enjoy!
 
-![""](public/images/home.gif)
+![""](LightBnB_WebApp-master/public/images/home.gif)
